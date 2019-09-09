@@ -1,75 +1,111 @@
-import $ from 'jquery';
-export function Board(input){
-  this.board = [];
-  this.input = input.split("");
-  this.isOK = true;
-  let counter = 0;
-  for(let i = 0; i < 9; i++){
-    let row = [];
-    for(let j = 0; j < 9; j++){
-      row.push(input[counter]);
-      counter++;
-    }
-    this.board.push(row);
+export default class SuperAgeCalculator {
+  constructor (d1, m1, y1, currentDay, currentMonth, CurrentYear) {
+    this.d1 = d1;
+    this.m1 = m1;
+    this.y1 = y1;
+    this.currentDay = currentDay;
+    this.currentMonth;
+    this.CurrentYear;
   }
-}
 
-Board.prototype.displayBoard = function(){
-  let counter = 1;
-  for(let i = 0; i < this.board.length;i++){
-    for(let j = 0; j < this.board[i].length;j++){
-      $("#" + counter).val(this.board[i][j]);
-      counter++;
+  adjustedBirthYearDays(d1, m1) {
+    const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    let days = 0;
+    for (let i - (m1 - 1); i < month.length, i++) {
+      days += month[i];
     }
+    return days - d1;
   }
-}
 
-Board.prototype.checkBoard = function(){
-  const success = "123456789";
-  let temp = [];
-  //check rows
-  for(let i = 0; i < 9; i++){
-    temp = [];
-    for(let j = 0; j < 9; j++){
-      temp.push(this.board[i][j]);
+  currentYearDays(currentDay, CurrentMonth) {
+    const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 30, 31];
+    let days = 0;
+    for (let i = 0; i < currentMonth; i++) {
+      days += month[i];
     }
+    return days + currentDay;
+  }
 
-    if(temp.sort().join("") !== success){
-      this.isOK = false;
+  yCounter(y1, currentYear, currentYearDays, adjustedBirthYearDays) {
+    let adjustedBirthYear = y1 + 1;
+    let ageYears = currentYear - adjustedBirthYear;
+    let addDays = currentYearDays + adjustedBirthYearDays;
+    let partialYear = addDays / 365;
+    return ageYears + partialYear;
+  }
+
+  expectancyYears(yCounter) {
+    const l1 = 80;
+    if (l1 > yCounter) {
+      return l1 - yCounter;
+    }
+    else {
+      return yCounter - l1;
     }
   }
-  //check columns
-  for(let i = 0; i < 9; i++){
-    temp = [];
-    for(let j = 0; j < 9; j++){
-      temp.push(this.board[j][i]);
+
+mercury(d1, m1, yCounter, expectancyYears) {
+  const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  if (d1 > month[m1 - 1] || d1 <= 0 || m1 > month.length || m1 <= 0) {
+      return "Date not real";
+  }
+  else if (80 > yCounter) {
+    return `You are ${(yCounter / 0.24).toFixed(2)} years old and have ${(expectancyYears / 0.24).toFixed(2)} years left to live on Mercury.`;
     }
-    if(temp.sort().join("") !== success){
-      this.isOK = false;
+    else {
+      return `You are ${(yCounter / 0.24).toFixed(2)} years old and have lived ${(expectancyYears / 0.24).toFixed(2)} years past your expectancy age on Mercury.`;
     }
   }
-  //check squares
-  let x = 0;
-  let y = 0;
-  for(let k = 0; k < 9; k++){
-    if(k > 0 && k % 3 === 0){
-      x += 3;
+
+venus(d1, m1, yCounter, expectancyYears) {
+  const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  if (d1 > month[m1 - 1] || d1 <= 0 || m1 > month.length || m1 <= 0) {
+      return "Date not real";
     }
-    if(y === 9){
-      y = 0;
+  else if (80 > yCounter) {
+    return `You are ${(yCounter / 0.62).toFixed(2)} years old and have ${(expectancyYears / 0.62).toFixed(2)} years left to live on Venus.`;
     }
-    temp = [];
-    for(let i = y; i < (y + 3); i++){
-      for(let j = x; j < (x + 3); j++){
-        temp.push(this.board[i][j]);
+    else {
+      return `You are ${(yCounter / 0.62).toFixed(2)} years old and have lived ${(expectancyYears / 0.62).toFixed(2)} years past your expectancy age on Venus.`;
       }
     }
-    console.log(temp);
-    if(temp.sort().join("") !== success){
-      this.isOK = false;
-    }
-    y += 3;
-  }
 
-  console.log(this.isOK)
+  earth(d1, m1, yCounter, expectancyYears) {
+    const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if (d1 > month[m1 - 1] || d1 <= 0 || m1 > month.length || m1 <= 0) {
+        return "Date not real";
+    }
+    else if (80 > yCounter) {
+      return `You are ${(yCounter / 1).toFixed(2)} years old and have ${(expectancyYears / 1).toFixed(2)} years left to live on Earth.`;
+      }
+      else {
+        return `You are ${(yCounter / 1).toFixed(2)} years old and have lived ${(expectancyYears / 1).toFixed(2)} years past your expectancy age on Earth.`;
+      }
+    }
+
+    mars(d1, m1, yCounter, expectancyYears) {
+      const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+      if (d1 > month[m1 - 1] || d1 <= 0 || m1 > month.length || m1 <= 0) {
+          return "Date not real";
+      }
+      else if (80 > yCounter) {
+        return `You are ${(yCounter / 1.88).toFixed(2)} years old and have ${(expectancyYears / 1.88).toFixed(2)} years left to live on Mars.`;
+        }
+        else {
+          return `You are ${(yCounter / 1.88).toFixed(2)} years old and have lived ${(expectancyYears / 1.88).toFixed(2)} years past your expectancy age on Mars.`;
+      }
+    }
+
+      mercury(d1, m1, yCounter, expectancyYears) {
+        const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        if (d1 > month[m1 - 1] || d1 <= 0 || m1 > month.length || m1 <= 0) {
+            return "Date not real";
+        }
+        else if (80 > yCounter) {
+          return `You are ${(yCounter / 11.86).toFixed(2)} years old and have ${(expectancyYears / 11.86).toFixed(2)} years left to live on Jupiter.`;
+          }
+          else {
+            return `You are ${(yCounter / 11.86).toFixed(2)} years old and have lived ${(expectancyYears / 11.86).toFixed(2)} years past your expectancy age on Jupiter.`;
+      }
+   }
 }
