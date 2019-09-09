@@ -1,16 +1,38 @@
-import { Board } from './board';
-import $ from 'jquery';
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles.css';
+import $ from 'jquery'
+import SuperAgeCalculator from './super-age-calculator.js'
 
-//boards from https://www.kaggle.com/bryanpark/sudoku
-$(document).ready(function(){
-  // var newBoard = new Board("125498367497136258368725491972864135543917682816352749284679513651283974739541826");
-  //var newBoard = new Board("864371259325849761971265843436192587198657432257483916689734125713528694542916378");
-  var newBoard = new Board("123456789234567891345678912456789123567891234678912345789123456891234567912345678");
+$(document).ready(function() {
+  $("#run").submit(function(event) {
+    event.preventDefault();
 
-  newBoard.displayBoard();
-  newBoard.checkBoard();
-  console.log(newBoard);
+    let SuperAgeCalculator = new SuperAgeCalculator();
+
+    let d1 = ParseInt($("#birthDate").val());
+    let m1 = parseInt($("#birthMonth").val());
+    let y1 = parseInt($("#birthYear").val());
+    let currentDate = new Date();
+    let currentDay = currentDate.getDate();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentdate.getFullYear();
+
+
+    SuperAgeCalculator = new SuperAgeCalculator(d1, m1, y1, currentDay, currentMonth, currentYear);
+
+    let currentYearDays = SuperAgeCalculator.currentYearDays(currentDay, currentMonth);
+    let adjustedBirthYearDays = SuperAgeCalculator.adjustedBirthYearDays(d1,m1);
+    let yCounter = SuperAgeCalculator.yCounter(y1, currentYear, currentYearDays, adjustedBirthYearDays);
+    let expectancyYears = SuperAgeCalculator.expectancyYears(yCounter);
+
+    let mercury = SuperAgeCalculator(d1, m1, yCounter, expectancyYears);
+    let venus = SuperAgeCalculator(d1, m1, yCounter, expectancyYears);
+    let earth = SuperAgeCalculator(d1, m1, yCounter, expectancyYears);
+    let mars = SuperAgeCalculator(d1, m1, yCounter, expectancyYears);
+    let jupiter = SuperAgeCalculator(d1, m1, yCounter, expectancyYears);
+
+    $("#mercury").text(mercury);
+    $("#venus").text(venus);
+    $("#earth").text(earth);
+    $("#mars").text(mars);
+    $("#jupiter").text(jupiter);
+  });
 });
