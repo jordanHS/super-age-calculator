@@ -1,23 +1,23 @@
 export default class SuperAgeCalculator {
-  constructor (d1, m1, y1, currentDay, currentMonth, CurrentYear) {
+  constructor (d1, m1, y1, currentDay, currentMonth, currentYear) {
     this.d1 = d1;
     this.m1 = m1;
     this.y1 = y1;
     this.currentDay = currentDay;
-    this.currentMonth;
-    this.CurrentYear;
+    this.currentMonth = currentMonth;
+    this.currentYear = currentYear;
   }
 
   adjustedBirthYearDays(d1, m1) {
     const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     let days = 0;
-    for (let i - (m1 - 1); i < month.length, i++) {
+    for (let i = (m1 - 1); i < month.length; i++) {
       days += month[i];
     }
     return days - d1;
   }
 
-  currentYearDays(currentDay, CurrentMonth) {
+  currentYearDays(currentDay, currentMonth) {
     const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 30, 31];
     let days = 0;
     for (let i = 0; i < currentMonth; i++) {
@@ -96,7 +96,7 @@ venus(d1, m1, yCounter, expectancyYears) {
       }
     }
 
-      mercury(d1, m1, yCounter, expectancyYears) {
+      jupiter(d1, m1, yCounter, expectancyYears) {
         const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         if (d1 > month[m1 - 1] || d1 <= 0 || m1 > month.length || m1 <= 0) {
             return "Date not real";

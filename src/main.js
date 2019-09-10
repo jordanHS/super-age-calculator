@@ -7,13 +7,13 @@ $(document).ready(function() {
 
     let SuperAgeCalculator = new SuperAgeCalculator();
 
-    let d1 = ParseInt($("#birthDate").val());
+    let d1 = parseInt($("#birthDate").val());
     let m1 = parseInt($("#birthMonth").val());
     let y1 = parseInt($("#birthYear").val());
     let currentDate = new Date();
     let currentDay = currentDate.getDate();
     let currentMonth = currentDate.getMonth();
-    let currentYear = currentdate.getFullYear();
+    let currentYear = currentDate.getFullYear();
 
 
     SuperAgeCalculator = new SuperAgeCalculator(d1, m1, y1, currentDay, currentMonth, currentYear);
