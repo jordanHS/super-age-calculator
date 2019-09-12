@@ -1,4 +1,4 @@
-import $ from 'jquery'
+ import $ from 'jquery'
 import SuperAgeCalculator from './super-age-calculator.js'
 
 $(document).ready(function() {
