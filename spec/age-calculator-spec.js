@@ -67,43 +67,48 @@ describe('SuperAgeCalculator', function() {
     let currentYearDays = calculator.currentYearDays(calculator.currentDay, calculator.currentMonth);
     let adjustedBirthYearDays = calculator.adjustedBirthYearDays(calculator.d1, calculator.m1);
     let yCounter = parseFloat(calculator.yCounter(calculator.y1, calculator.currentYear, currentYearDays, adjustedBirthYearDays));
-    let mercury = calculator.mercury(calculator.d1, calculator.m1, yCounter, expectancyYears(yCounter));
-    expect(mercury).toEqual(`You are 97.08 years old and have and have 234.38 years left on Mercury`);
+    let expectancyYears = calculator.expectancyYears(yCounter);
+    let mercury = calculator.mercury(calculator.d1, calculator.m1, yCounter, expectancyYears);
+    expect(mercury).toEqual(`You are 99.81 years old and have 233.53 years left to live on Mercury.`);
   });
 
-  // it('should test for age on Venus and years left to live on Venus', function() {
-  //   let calculator = new SuperAgeCalculator(1, 11, 1995, 10, 9, 2019);
-  //   let currentYearDays = calculator.currentYearDays(calculator.currentDay, calculator.currentMonth);
-  //   let adjustedBirthYearDays = calculator.adjustedBirthYearDays(calculator.d1, calculator.m1);
-  //   let yCounter = parseFloat(calculator.yCounter(calculator.y1, calculator.currentYear, currentYearDays, adjustedBirthYearDays));
-  //   let venus = calculator.venus(calculator.d1, calculator.m1, yCounter, expectancyYears);
-  //   expect(venus).toEqual('You are 38.4 years old and have and have 42.34 years left on Venus');
-  // });
-  //
-  // it('should test for age on Earth and years left to live on Earth', function() {
-  //   let calculator = new SuperAgeCalculator(1, 11, 1995, 10, 9, 2019);
-  //   let currentYearDays = calculator.currentYearDays(calculator.currentDay, calculator.currentMonth);
-  //   let adjustedBirthYearDays = calculator.adjustedBirthYearDays(calculator.d1, calculator.m1);
-  //   let yCounter = parseFloat(calculator.yCounter(calculator.y1, calculator.currentYear, currentYearDays, adjustedBirthYearDays));
-  //   let earth = calculator.earth(calculator.d1, calculator.m1, yCounter, expectancyYears);
-  //   expect(earth).toEqual('You are 23.8 years old and have and have 56.25 years left on Earth');
-  // });
-  //
-  // it('should test for age on Mars and years left to live on Mars', function() {
-  //   let calculator = new SuperAgeCalculator(1, 11, 1995, 10, 9, 2019);
-  //   let currentYearDays = calculator.currentYearDays(calculator.currentDay, calculator.currentMonth);
-  //   let adjustedBirthYearDays = calculator.adjustedBirthYearDays(calculator.d1, calculator.m1);
-  //   let yCounter = parseFloat(calculator.yCounter(calculator.y1, calculator.currentYear, currentYearDays, adjustedBirthYearDays));
-  //   let mercury = calculator.mars(calculator.d1, calculator.m1, yCounter, expectancyYears);
-  //   expect(mars).toEqual('You are 12.66 years old and have and have 29.92 years left on Mars');
-  // });
-  //
-  // it('should test for age on Jupiter and years left to live on Jupiter', function() {
-  //   let calculator = new SuperAgeCalculator(1, 11, 1995, 10, 9, 2019);
-  //   let currentYearDays = calculator.currentYearDays(calculator.currentDay, calculator.currentMonth);
-  //   let adjustedBirthYearDays = calculator.adjustedBirthYearDays(calculator.d1, calculator.m1);
-  //   let yCounter = parseFloat(calculator.yCounter(calculator.y1, calculator.currentYear, currentYearDays, adjustedBirthYearDays));
-  //   let mars = calculator.jupiter(calculator.d1, calculator.m1, yCounter, expectancyYears);
-  //   expect(jupiter).toEqual('You are 2.01 years old and have and have 4.74 years left on Jupiter');
-  // });
+  it('should test for age on Venus and years left to live on Venus', function() {
+    let calculator = new SuperAgeCalculator(1, 11, 1995, 10, 9, 2019);
+    let currentYearDays = calculator.currentYearDays(calculator.currentDay, calculator.currentMonth);
+    let adjustedBirthYearDays = calculator.adjustedBirthYearDays(calculator.d1, calculator.m1);
+    let yCounter = parseFloat(calculator.yCounter(calculator.y1, calculator.currentYear, currentYearDays, adjustedBirthYearDays));
+    let expectancyYears = calculator.expectancyYears(yCounter);
+    let venus = calculator.venus(calculator.d1, calculator.m1, yCounter, expectancyYears);
+    expect(venus).toEqual('You are 38.61 years old and have 90.42 years left to live on Venus.');
+  });
+
+   it('should test for age on Earth and years left to live on Earth', function() {
+    let calculator = new SuperAgeCalculator(1, 11, 1995, 10, 9, 2019);
+    let currentYearDays = calculator.currentYearDays(calculator.currentDay, calculator.currentMonth);
+    let adjustedBirthYearDays = calculator.adjustedBirthYearDays(calculator.d1, calculator.m1);
+    let yCounter = parseFloat(calculator.yCounter(calculator.y1, calculator.currentYear, currentYearDays, adjustedBirthYearDays));
+    let expectancyYears = calculator.expectancyYears(yCounter);
+    let earth = calculator.earth(calculator.d1, calculator.m1, yCounter, expectancyYears);
+    expect(earth).toEqual('You are 23.94 years old and have 56.06 years left to live on Earth.');
+  });
+
+  it('should test for age on Mars and years left to live on Mars', function() {
+    let calculator = new SuperAgeCalculator(1, 11, 1995, 10, 9, 2019);
+    let currentYearDays = calculator.currentYearDays(calculator.currentDay, calculator.currentMonth);
+    let adjustedBirthYearDays = calculator.adjustedBirthYearDays(calculator.d1, calculator.m1);
+    let yCounter = parseFloat(calculator.yCounter(calculator.y1, calculator.currentYear, currentYearDays, adjustedBirthYearDays));
+    let expectancyYears = calculator.expectancyYears(yCounter);
+    let mars = calculator.mars(calculator.d1, calculator.m1, yCounter, expectancyYears);
+    expect(mars).toEqual('You are 12.73 years old and have 29.82 years left to live on Mars.');
+  });
+
+  it('should test for age on Jupiter and years left to live on Jupiter', function() {
+    let calculator = new SuperAgeCalculator(1, 11, 1995, 10, 9, 2019);
+    let currentYearDays = calculator.currentYearDays(calculator.currentDay, calculator.currentMonth);
+    let adjustedBirthYearDays = calculator.adjustedBirthYearDays(calculator.d1, calculator.m1);
+    let yCounter = parseFloat(calculator.yCounter(calculator.y1, calculator.currentYear, currentYearDays, adjustedBirthYearDays));
+    let expectancyYears = calculator.expectancyYears(yCounter);
+    let jupiter = calculator.jupiter(calculator.d1, calculator.m1, yCounter, expectancyYears);
+    expect(jupiter).toEqual('You are 2.02 years old and have 4.73 years left to live on Jupiter.');
+  });
 });
