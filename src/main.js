@@ -10,10 +10,10 @@ $(document).ready(function() {
     let d1 = parseInt($("#birthDate").val());
     let m1 = parseInt($("#birthMonth").val());
     let y1 = parseInt($("#birthYear").val());
-    let currentDate = new Date();
-    let currentDay = currentDate.getDate();
-    let currentMonth = currentDate.getMonth();
-    let currentYear = currentDate.getFullYear();
+    let today = new Date();
+    let currentDay = today.getDate();
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
 
 
     SuperAgeCalculator = new SuperAgeCalculator(d1, m1, y1, currentDay, currentMonth, currentYear);
